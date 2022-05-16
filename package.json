@@ -1,5 +1,7 @@
 {
   "name": "ng-pokemon-app",
+  "author": "Montoya Grégoire",
+  "description": "AngularJS app to display a list of pokemon",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
