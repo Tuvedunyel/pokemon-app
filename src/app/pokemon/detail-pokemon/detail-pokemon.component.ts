@@ -11,20 +11,21 @@ import { PokemonService } from "../pokemon.service";
 export class DetailPokemonComponent implements OnInit {
     pokemon: Pokemon | undefined;
 
-    constructor ( private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService ) {}
+    constructor ( private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService ) {
+    }
 
     ngOnInit () {
         const pokemonId: string | null = this.route.snapshot.paramMap.get( 'id' );
         if (pokemonId) {
-            this.pokemon = this.pokemonService.getPokemonById( Number(pokemonId) )
+            this.pokemonService.getPokemonById( Number( pokemonId ) ).subscribe( ( pokemon ) => this.pokemon = pokemon );
         }
     }
 
-    goToPokemonList() {
-        this.router.navigate( ['/pokemons']);
+    goToPokemonList () {
+        this.router.navigate( [ '/pokemons' ] );
     }
 
-    goToEditPokemon( pokemon: Pokemon ) {
-        this.router.navigate( ['/edit/pokemon', pokemon.id] );
+    goToEditPokemon ( pokemon: Pokemon ) {
+        this.router.navigate( [ '/edit/pokemon', pokemon.id ] );
     }
 }
